@@ -20,12 +20,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "orders")
 @Getter @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order {
 	
 	@Id @GeneratedValue
@@ -64,6 +67,8 @@ public class Order {
 		delivery.setOrder(this);
 	}
 	
+	
+	// ==생성 메서드== //
 	public static Order createOrder(Member member, Delivery delivery, OrderItem... orderItems) {
 		Order order = new Order();
 		order.setMember(member);
@@ -76,6 +81,8 @@ public class Order {
 		return order;
 	}
 	
+	
+	// ==비즈니스 로직== //
 	/**
 	 * 주문 취소
 	 */
@@ -90,7 +97,7 @@ public class Order {
 		}
 	}
 	
-
+	//==조회 로직==//
 	/**
 	 * 전체 주문 가격 조회
 	 * @return totalPrice
