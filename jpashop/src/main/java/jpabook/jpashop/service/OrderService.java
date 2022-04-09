@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import jpabook.jpashop.Repository.ItemRepository;
 import jpabook.jpashop.Repository.MemberRepository;
 import jpabook.jpashop.Repository.OrderRepository;
+import jpabook.jpashop.Repository.OrderSearch;
 import jpabook.jpashop.domain.Delivery;
 import jpabook.jpashop.domain.Item;
 import jpabook.jpashop.domain.Member;
@@ -60,5 +61,7 @@ public class OrderService {
 		order.cancel();
 	}
 	
-	
+	public List<Order> findOrders(OrderSearch orderSearch){
+		return orderRepository.findAllByString(orderSearch);
+	}
 }
