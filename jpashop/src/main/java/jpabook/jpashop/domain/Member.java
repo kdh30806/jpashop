@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,7 +29,7 @@ public class Member {
 	
 	@Embedded
 	private Address address;
-	
+	 
 	@OneToMany(mappedBy = "member") // 주인이 아닌 매핑이 될때 = 일대다에서 일일때 mappedBy
 	private List<Order> orders = new ArrayList<>();
 			
