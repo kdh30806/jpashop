@@ -14,6 +14,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,6 +29,7 @@ public class Category {
 	
 	private String name;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "category_item",
 		joinColumns = @JoinColumn(name= "category_id"),
