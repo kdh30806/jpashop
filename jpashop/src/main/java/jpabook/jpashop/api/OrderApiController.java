@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import jpabook.jpashop.Repository.OrderRepository;
@@ -44,6 +45,27 @@ public class OrderApiController {
 			.map(o -> new OrderDto(o))
 			.collect(Collectors.toList());
 		return collect;
+	}
+	
+	// 페이징이 불가능하다.
+	// 패치 조인은 하나만 써야한다. = 1 X N X M 불가능하다.
+	@GetMapping("/api/v3/orders")
+	public List<OrderDto> ordersV3(){
+		List<Order> orders = orderRepository.findAllWithItem();
+		List<OrderDto> collect = orders.stream()
+				.map(o -> new OrderDto(o))
+				.collect(Collectors.toList());
+			return collect;
+	}
+	
+	@GetMapping("/api/v3.1/orders")
+	public List<OrderDto> ordersV3_page(@RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "limit", defaultValue = "100") int limit){
+		List<Order> orders = orderRepository.findAllWithMemberDelivery(offset, limit);
+		
+		List<OrderDto> collect = orders.stream()
+				.map(o -> new OrderDto(o))
+				.collect(Collectors.toList());
+			return collect;
 	}
 	
 	@Getter
