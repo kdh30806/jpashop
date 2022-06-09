@@ -11,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import jpabook.jpashop.Repository.OrderRepository;
 import jpabook.jpashop.domain.Address;
 import jpabook.jpashop.domain.Item;
 import jpabook.jpashop.domain.Member;
@@ -19,6 +18,7 @@ import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.OrderStatus;
 import jpabook.jpashop.domain.item.Book;
 import jpabook.jpashop.exception.NotEnoughStockException;
+import jpabook.jpashop.repository.OrderRepository;
 import jpabook.jpashop.service.OrderService;
 
 @RunWith(SpringRunner.class)
